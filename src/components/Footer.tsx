@@ -1,46 +1,67 @@
-// 푸터 — 사업자 정보 + 카피라이트
+// 푸터 — 큰 화반 워드마크 + 사업자 정보
 export default function Footer() {
   return (
-    <footer className="bg-(--color-ink) border-t border-white/10 text-white/60 text-sm">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12 grid md:grid-cols-2 gap-8">
-        <div>
-          <div className="font-serif text-2xl font-bold text-(--color-brand-soft) mb-3">
-            화반
+    <footer className="ink-gradient text-(--color-cream)/70 relative overflow-hidden border-t border-white/10">
+      <div className="absolute inset-0 bg-noise opacity-30 pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-16 pb-10 relative">
+        <div className="grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-6">
+            <p className="font-serif font-black text-[18vw] sm:text-[15vw] lg:text-[12rem] leading-[0.85] tracking-tighter text-(--color-cream)">
+              화반<span className="text-(--color-brand-flame)">.</span>
+            </p>
+            <p className="mt-4 text-sm max-w-md">
+              한국인에게 가장 적합한 한 끼 식사. 2015년 부산 부민동에서 시작된 비빔밥 전문 한식점.
+            </p>
           </div>
-          <p className="text-xs leading-relaxed text-white/50 max-w-sm">
-            한국인에게 가장 적합한 한 끼 식사. 2015년 부산 부민동에서 시작된
-            비빔밥 전문 한식점.
-          </p>
+
+          <div className="lg:col-span-6 grid sm:grid-cols-2 gap-8 text-xs leading-loose">
+            <div>
+              <p className="text-[10px] tracking-[0.3em] text-(--color-brand-flame) font-bold mb-3">
+                BUSINESS
+              </p>
+              <p><span className="text-(--color-cream)/40 inline-block w-16">상호</span>화반</p>
+              <p><span className="text-(--color-cream)/40 inline-block w-16">대표</span>마경득</p>
+              <p>
+                <span className="text-(--color-cream)/40 inline-block w-16">사업자</span>
+                603-13-77384
+              </p>
+              <p>
+                <span className="text-(--color-cream)/40 inline-block w-16">주소</span>
+                부산 서구 구덕로 199번길 5
+              </p>
+            </div>
+            <div>
+              <p className="text-[10px] tracking-[0.3em] text-(--color-brand-flame) font-bold mb-3">
+                CONTACT
+              </p>
+              <p>
+                <span className="text-(--color-cream)/40 inline-block w-16">TEL</span>
+                <a href="tel:051-255-8727" className="hover:text-(--color-brand-flame)">051-255-8727</a>
+              </p>
+              <p>
+                <span className="text-(--color-cream)/40 inline-block w-16">EMAIL</span>
+                <a href="mailto:aktl7241@naver.com" className="hover:text-(--color-brand-flame)">
+                  aktl7241@naver.com
+                </a>
+              </p>
+              <p>
+                <span className="text-(--color-cream)/40 inline-block w-16">SNS</span>
+                <a
+                  href="https://instagram.com/hwaban_official"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-(--color-brand-flame)"
+                >
+                  @hwaban_official
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="text-xs leading-relaxed space-y-1.5">
-          <p>
-            <span className="text-white/40 inline-block w-20">상호</span> 화반
-          </p>
-          <p>
-            <span className="text-white/40 inline-block w-20">대표</span> 마경득
-          </p>
-          <p>
-            <span className="text-white/40 inline-block w-20">주소</span>{" "}
-            부산광역시 서구 구덕로 199번길 5 화반
-          </p>
-          <p>
-            <span className="text-white/40 inline-block w-20">사업자번호</span>{" "}
-            603-13-77384
-          </p>
-          <p>
-            <span className="text-white/40 inline-block w-20">TEL</span>{" "}
-            051-255-8727
-          </p>
-          <p>
-            <span className="text-white/40 inline-block w-20">E-MAIL</span>{" "}
-            aktl7241@naver.com
-          </p>
-        </div>
-      </div>
-      <div className="border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-5 flex flex-wrap justify-between items-center gap-2 text-xs text-white/40">
-          <p>COPYRIGHT © {new Date().getFullYear()} HWABAN. All rights reserved.</p>
-          <p>Renewed with React · Vite · Cloudflare Pages</p>
+
+        <div className="mt-12 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-[11px] text-(--color-cream)/40">
+          <p>© {new Date().getFullYear()} HWABAN. ALL RIGHTS RESERVED.</p>
+          <p>RENEWED WITH React · Vite · Cloudflare Pages</p>
         </div>
       </div>
     </footer>

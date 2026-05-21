@@ -1,15 +1,17 @@
-/* 화반 전역 스타일 — Tailwind v4 + 브랜드 토큰 */
+/* 화반 전역 스타일 — 강렬한 한식 미감, Tailwind v4 + 브랜드 토큰 */
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #C8342A;
-  --color-brand-dark: #9E2820;
-  --color-brand-soft: #F8E9E5;
-  --color-cream: #FAF6F0;
-  --color-cream-deep: #F1E8D9;
-  --color-ink: #1F1B17;
-  --color-ink-soft: #6B5F54;
-  --color-line: #E8DFD2;
+  --color-brand: #B11E1E;
+  --color-brand-deep: #7A1212;
+  --color-brand-flame: #E84B2A;
+  --color-brand-soft: #F5DAD3;
+  --color-cream: #F8F2E8;
+  --color-cream-deep: #ECE1CC;
+  --color-paper: #FFFCF7;
+  --color-ink: #0E0E0F;
+  --color-ink-soft: #4A3F37;
+  --color-line: #DDD0BC;
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
@@ -40,11 +42,15 @@ body {
 
 .font-serif {
   font-family: var(--font-serif);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
 .brand-gradient {
-  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+  background: linear-gradient(135deg, var(--color-brand-flame) 0%, var(--color-brand-deep) 100%);
+}
+
+.ink-gradient {
+  background: linear-gradient(180deg, #0E0E0F 0%, #1B1410 100%);
 }
 
 .hide-scroll::-webkit-scrollbar {
@@ -54,14 +60,79 @@ body {
   scrollbar-width: none;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-
 img {
   user-select: none;
+}
+
+/* ───── 모션 ───── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 28s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes marquee-fast {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee-fast {
+  animation: marquee-fast 16s linear infinite;
+}
+
+@keyframes fade-up {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+}
+.reveal.in {
+  animation: fade-up 0.9s cubic-bezier(0.2, 0.65, 0.3, 1) forwards;
+}
+
+@keyframes ken-burns {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.12) translate(-1%, -1%); }
+}
+.ken-burns {
+  animation: ken-burns 18s ease-out infinite alternate;
+}
+
+/* ───── 한국 인쇄 그리드 라인 — 강렬한 한식 디자인 ───── */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(14, 14, 15, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14, 14, 15, 0.05) 1px, transparent 1px);
+  background-size: 96px 96px;
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1.5px currentColor;
+  color: transparent;
+}
+
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
+  background-size: 18px 18px;
 }
