@@ -1,0 +1,67 @@
+/* 화반 전역 스타일 — Tailwind v4 + 브랜드 토큰 */
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #C8342A;
+  --color-brand-dark: #9E2820;
+  --color-brand-soft: #F8E9E5;
+  --color-cream: #FAF6F0;
+  --color-cream-deep: #F1E8D9;
+  --color-ink: #1F1B17;
+  --color-ink-soft: #6B5F54;
+  --color-line: #E8DFD2;
+
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", sans-serif;
+  --font-serif: "Noto Serif KR", "Pretendard Variable", serif;
+
+  --radius-card: 1.25rem;
+}
+
+html,
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss02" on, "tnum" on;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: white;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+}
+
+.brand-gradient {
+  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+.hide-scroll {
+  scrollbar-width: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+img {
+  user-select: none;
+}
