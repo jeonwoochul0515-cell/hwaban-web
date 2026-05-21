@@ -1,56 +1,80 @@
-// 푸터 — 큰 화반 워드마크 + 사업자 정보
+// 푸터 — i18n
+import { useT } from "../i18n/locale";
+import { MESSAGES } from "../i18n/messages";
+import LocaleSwitch from "./LocaleSwitch";
+
 export default function Footer() {
+  const t = useT();
+  const m = t(MESSAGES).footer;
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="ink-gradient text-(--color-cream)/70 relative overflow-hidden border-t border-white/10">
-      <div className="absolute inset-0 bg-noise opacity-30 pointer-events-none" />
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-16 pb-10 relative">
-        <div className="grid lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-6">
-            <p className="font-serif font-black text-[18vw] sm:text-[15vw] lg:text-[12rem] leading-[0.85] tracking-tighter text-(--color-cream)">
-              화반<span className="text-(--color-brand-flame)">.</span>
+    <footer className="ink-gradient text-(--color-cream) border-t border-(--color-ink-soft)/40">
+      <div className="max-w-7xl mx-auto px-5 sm:px-10 pt-20 pb-10">
+        <div className="grid lg:grid-cols-12 gap-12 items-end">
+          <div className="lg:col-span-7">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="seal w-14 h-14 text-2xl">花</span>
+              <div>
+                <p className="font-serif text-3xl font-bold leading-none">{m.name}</p>
+                <p className="text-[10px] tracking-[0.35em] mt-2 text-(--color-cream)/60">
+                  HWABAN · 花飯 · SINCE 2015
+                </p>
+              </div>
+            </div>
+            <p className="font-serif text-xl sm:text-2xl leading-snug tracking-tight max-w-lg text-(--color-cream)/90">
+              {m.tagline}
             </p>
-            <p className="mt-4 text-sm max-w-md">
-              한국인에게 가장 적합한 한 끼 식사. 2015년 부산 부민동에서 시작된 비빔밥 전문 한식점.
-            </p>
+            <div className="mt-7">
+              <LocaleSwitch variant="inline" />
+            </div>
           </div>
 
-          <div className="lg:col-span-6 grid sm:grid-cols-2 gap-8 text-xs leading-loose">
+          <div className="lg:col-span-5 grid sm:grid-cols-2 gap-8 text-xs leading-loose">
             <div>
-              <p className="text-[10px] tracking-[0.3em] text-(--color-brand-flame) font-bold mb-3">
-                BUSINESS
+              <p className="text-[10px] tracking-[0.3em] text-(--color-brand) font-bold mb-3">
+                {m.biz_eyebrow}
               </p>
-              <p><span className="text-(--color-cream)/40 inline-block w-16">상호</span>화반</p>
-              <p><span className="text-(--color-cream)/40 inline-block w-16">대표</span>마경득</p>
               <p>
-                <span className="text-(--color-cream)/40 inline-block w-16">사업자</span>
+                <span className="text-(--color-cream)/40 inline-block w-16">{m.biz_name}</span>
+                {m.name}
+              </p>
+              <p>
+                <span className="text-(--color-cream)/40 inline-block w-16">{m.biz_ceo}</span>
+                {m.ceo_value}
+              </p>
+              <p>
+                <span className="text-(--color-cream)/40 inline-block w-16">{m.biz_reg}</span>
                 603-13-77384
               </p>
               <p>
-                <span className="text-(--color-cream)/40 inline-block w-16">주소</span>
-                부산 서구 구덕로 199번길 5
+                <span className="text-(--color-cream)/40 inline-block w-16">{m.biz_addr}</span>
+                {m.address_value}
               </p>
             </div>
             <div>
-              <p className="text-[10px] tracking-[0.3em] text-(--color-brand-flame) font-bold mb-3">
-                CONTACT
+              <p className="text-[10px] tracking-[0.3em] text-(--color-brand) font-bold mb-3">
+                {m.contact_eyebrow}
               </p>
               <p>
-                <span className="text-(--color-cream)/40 inline-block w-16">TEL</span>
-                <a href="tel:051-255-8727" className="hover:text-(--color-brand-flame)">051-255-8727</a>
+                <span className="text-(--color-cream)/40 inline-block w-16">{m.biz_tel}</span>
+                <a href="tel:051-255-8727" className="hover:text-(--color-cream)">
+                  051-255-8727
+                </a>
               </p>
               <p>
-                <span className="text-(--color-cream)/40 inline-block w-16">EMAIL</span>
-                <a href="mailto:aktl7241@naver.com" className="hover:text-(--color-brand-flame)">
+                <span className="text-(--color-cream)/40 inline-block w-16">{m.biz_email}</span>
+                <a href="mailto:aktl7241@naver.com" className="hover:text-(--color-cream)">
                   aktl7241@naver.com
                 </a>
               </p>
               <p>
-                <span className="text-(--color-cream)/40 inline-block w-16">SNS</span>
+                <span className="text-(--color-cream)/40 inline-block w-16">{m.biz_sns}</span>
                 <a
                   href="https://instagram.com/hwaban_official"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-(--color-brand-flame)"
+                  className="hover:text-(--color-cream)"
                 >
                   @hwaban_official
                 </a>
@@ -59,9 +83,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-[11px] text-(--color-cream)/40">
-          <p>© {new Date().getFullYear()} HWABAN. ALL RIGHTS RESERVED.</p>
-          <p>RENEWED WITH React · Vite · Cloudflare Pages</p>
+        <div className="mt-14 pt-6 border-t border-(--color-cream)/15 flex flex-wrap items-center justify-between gap-3 text-[11px] text-(--color-cream)/45 tracking-widest">
+          <p>{m.rights.replace("{y}", String(year))}</p>
+          <p>RENEWED · React · Vite · Cloudflare Pages</p>
         </div>
       </div>
     </footer>

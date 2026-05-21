@@ -1,35 +1,28 @@
-// 무한 흐름 마퀴 ribbon
+// 차분한 마퀴 — 가는 라인 + 작은 텍스트, 한식 분위기에 맞게 절제
 type Props = {
   items: string[];
-  speed?: "slow" | "fast";
   variant?: "dark" | "light" | "brand";
   className?: string;
 };
 
-export default function Marquee({
-  items,
-  speed = "slow",
-  variant = "brand",
-  className = "",
-}: Props) {
+export default function Marquee({ items, variant = "light", className = "" }: Props) {
   const doubled = [...items, ...items];
   const palette = {
-    dark: "bg-(--color-ink) text-(--color-cream)",
-    light: "bg-(--color-cream) text-(--color-ink)",
-    brand: "bg-(--color-brand) text-white",
+    dark: "bg-(--color-ink) text-(--color-cream) border-y border-(--color-ink-soft)/40",
+    light: "bg-(--color-cream) text-(--color-ink) border-y border-(--color-line)",
+    brand: "bg-(--color-brand) text-(--color-paper)",
   }[variant];
-  const speedClass = speed === "fast" ? "animate-marquee-fast" : "animate-marquee";
 
   return (
     <div className={`overflow-hidden ${palette} ${className}`}>
-      <div className={`flex whitespace-nowrap ${speedClass} py-4`}>
+      <div className="flex whitespace-nowrap animate-marquee py-3.5">
         {doubled.map((t, i) => (
           <span
             key={i}
-            className="font-serif text-3xl sm:text-5xl font-black px-8 flex items-center gap-8 shrink-0"
+            className="font-serif text-base sm:text-lg tracking-[0.2em] px-7 flex items-center gap-7 shrink-0"
           >
+            <span className="text-(--color-brand) opacity-60 text-xs">◆</span>
             {t}
-            <span className="opacity-50 text-2xl">✦</span>
           </span>
         ))}
       </div>

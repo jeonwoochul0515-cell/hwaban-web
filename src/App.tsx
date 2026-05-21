@@ -1,4 +1,8 @@
-// 메인 페이지 — 단일 페이지 앵커 스크롤 구조
+// 메인 페이지 — LocaleProvider 감싸고 동적 메타 적용
+import { useEffect } from "react";
+import { LocaleProvider, useT } from "./i18n/locale";
+import { MESSAGES } from "./i18n/messages";
+import { useLocale } from "./i18n/locale";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -10,9 +14,28 @@ import Franchise from "./components/Franchise";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-export default function App() {
+function MetaSync() {
+  const { locale } = useLocale();
+  const t = useT();
+  useEffect(() => {
+    const meta = t(MESSAGES).meta;
+    document.title = meta.title;
+    let desc = document.querySelector('meta[name="description"]') as HTMLMetaElement | null;
+    if (!desc) {
+      desc = document.createElement("meta");
+      desc.name = "description";
+      document.head.appendChild(desc);
+    }
+    desc.content = meta.description;
+    document.documentElement.lang = locale;
+  }, [locale, t]);
+  return null;
+}
+
+function Shell() {
   return (
-    <div className="min-h-screen bg-(--color-cream) text-(--color-ink)">
+    <div className="min-h-screen bg-paper text-(--color-ink)">
+      <MetaSync />
       <Header />
       <main>
         <Hero />
@@ -26,5 +49,13 @@ export default function App() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <LocaleProvider>
+      <Shell />
+    </LocaleProvider>
   );
 }

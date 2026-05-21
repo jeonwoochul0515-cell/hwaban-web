@@ -1,29 +1,30 @@
-/* 화반 전역 스타일 — 강렬한 한식 미감, Tailwind v4 + 브랜드 토큰 */
+/* 화반 전역 스타일 — 차분한 한식 · 전통의 미 · 절제된 고급 */
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #B11E1E;
-  --color-brand-deep: #7A1212;
-  --color-brand-flame: #E84B2A;
-  --color-brand-soft: #F5DAD3;
-  --color-cream: #F8F2E8;
-  --color-cream-deep: #ECE1CC;
-  --color-paper: #FFFCF7;
-  --color-ink: #0E0E0F;
-  --color-ink-soft: #4A3F37;
-  --color-line: #DDD0BC;
+  /* 단청 적색 톤다운 + 먹빛 + 한지 베이지 */
+  --color-brand: #8B2A24;
+  --color-brand-deep: #5C1A16;
+  --color-brand-soft: #E8D7D3;
+  --color-ink: #1B1815;
+  --color-ink-soft: #4A4239;
+  --color-cream: #F4ECDB;
+  --color-cream-deep: #E8DDC6;
+  --color-paper: #FBF8F2;
+  --color-line: #D6CAB1;
+  --color-celadon: #6B7F5C;
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
     "Noto Sans KR", sans-serif;
   --font-serif: "Noto Serif KR", "Pretendard Variable", serif;
 
-  --radius-card: 1.25rem;
+  --radius-card: 0.5rem;
 }
 
 html,
 body {
-  background-color: var(--color-cream);
+  background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -37,7 +38,7 @@ body {
 
 ::selection {
   background: var(--color-brand);
-  color: white;
+  color: var(--color-paper);
 }
 
 .font-serif {
@@ -46,38 +47,33 @@ body {
 }
 
 .brand-gradient {
-  background: linear-gradient(135deg, var(--color-brand-flame) 0%, var(--color-brand-deep) 100%);
+  background: linear-gradient(150deg, var(--color-brand) 0%, var(--color-brand-deep) 100%);
 }
 
 .ink-gradient {
-  background: linear-gradient(180deg, #0E0E0F 0%, #1B1410 100%);
-}
-
-.hide-scroll::-webkit-scrollbar {
-  display: none;
-}
-.hide-scroll {
-  scrollbar-width: none;
+  background: linear-gradient(180deg, #1B1815 0%, #28221E 100%);
 }
 
 img {
   user-select: none;
 }
 
-/* ───── 모션 ───── */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+/* ───── 절제된 모션 ───── */
+@keyframes fade-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
-.animate-float {
-  animation: float 5s ease-in-out infinite;
+.reveal { opacity: 0; }
+.reveal.in {
+  animation: fade-up 1.1s cubic-bezier(0.2, 0.65, 0.3, 1) forwards;
 }
 
-@keyframes spin-slow {
-  to { transform: rotate(360deg); }
+@keyframes slow-zoom {
+  0% { transform: scale(1.04); }
+  100% { transform: scale(1); }
 }
-.animate-spin-slow {
-  animation: spin-slow 28s linear infinite;
+.slow-zoom {
+  animation: slow-zoom 12s ease-out forwards;
 }
 
 @keyframes marquee {
@@ -85,54 +81,62 @@ img {
   100% { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: marquee 28s linear infinite;
+  animation: marquee 60s linear infinite;
 }
 
-@keyframes marquee-fast {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.animate-marquee-fast {
-  animation: marquee-fast 16s linear infinite;
-}
+.hide-scroll::-webkit-scrollbar { display: none; }
+.hide-scroll { scrollbar-width: none; }
 
-@keyframes fade-up {
-  0% { opacity: 0; transform: translateY(24px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-.reveal {
-  opacity: 0;
-}
-.reveal.in {
-  animation: fade-up 0.9s cubic-bezier(0.2, 0.65, 0.3, 1) forwards;
-}
-
-@keyframes ken-burns {
-  0% { transform: scale(1) translate(0, 0); }
-  100% { transform: scale(1.12) translate(-1%, -1%); }
-}
-.ken-burns {
-  animation: ken-burns 18s ease-out infinite alternate;
-}
-
-/* ───── 한국 인쇄 그리드 라인 — 강렬한 한식 디자인 ───── */
-.bg-grid {
+/* ───── 한국 전통 패턴 — 한지 텍스처 ───── */
+.bg-hanji {
+  background-color: var(--color-cream);
   background-image:
-    linear-gradient(to right, rgba(14, 14, 15, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(14, 14, 15, 0.05) 1px, transparent 1px);
-  background-size: 96px 96px;
+    radial-gradient(circle at 20% 30%, rgba(139, 42, 36, 0.025) 0%, transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(107, 127, 92, 0.03) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.36 0 0 0 0 0.29 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+.bg-paper {
+  background-color: var(--color-paper);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='1'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.36 0 0 0 0 0.29 0 0 0 0.025 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23p)'/%3E%3C/svg%3E");
 }
 
-.text-stroke {
-  -webkit-text-stroke: 1.5px currentColor;
-  color: transparent;
+/* ───── 인장 스타일 (전통 도장) ───── */
+.seal {
+  width: 56px;
+  height: 56px;
+  background: var(--color-brand);
+  color: var(--color-paper);
+  font-family: var(--font-serif);
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  position: relative;
+}
+.seal::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--color-paper);
+  border-radius: 4px;
+  pointer-events: none;
 }
 
-.dot-pattern {
-  background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
-  background-size: 18px 18px;
+/* 가는 구분선 */
+.divider-line {
+  position: relative;
+}
+.divider-line::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--color-brand);
+  margin-top: 1.5rem;
+}
+.divider-line.center::after {
+  margin-left: auto;
+  margin-right: auto;
 }
