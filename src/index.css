@@ -1,8 +1,7 @@
-/* 화반 전역 스타일 — 차분한 한식 · 전통의 미 · 절제된 고급 */
+/* 화반 전역 스타일 — 차분한 한식 · 한지(韓紙) 텍스처 · 절제된 고급 */
 @import "tailwindcss";
 
 @theme {
-  /* 단청 적색 톤다운 + 먹빛 + 한지 베이지 */
   --color-brand: #8B2A24;
   --color-brand-deep: #5C1A16;
   --color-brand-soft: #E8D7D3;
@@ -22,19 +21,40 @@
   --radius-card: 0.5rem;
 }
 
-html,
-body {
+/* ───── 한지(韓紙) 패턴 — 전역 ───── */
+html {
   background-color: var(--color-paper);
+}
+
+body {
+  margin: 0;
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   font-feature-settings: "ss02" on, "tnum" on;
   scroll-behavior: smooth;
+
+  background-color: var(--color-paper);
+  background-image:
+    /* 잔잔한 색감 변화 — 한지의 미묘한 자국 */
+    radial-gradient(ellipse 900px 600px at 15% 12%, rgba(139, 42, 36, 0.022) 0%, transparent 55%),
+    radial-gradient(ellipse 1100px 700px at 85% 60%, rgba(107, 127, 92, 0.028) 0%, transparent 60%),
+    radial-gradient(ellipse 700px 500px at 50% 90%, rgba(180, 130, 75, 0.030) 0%, transparent 60%),
+    /* 대나무발 자국 — 한지 결 (가로) */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 28px,
+      rgba(139, 100, 60, 0.010) 28px,
+      rgba(139, 100, 60, 0.010) 29px
+    ),
+    /* 한지 섬유 노이즈 */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='3' stitchTiles='stitch' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.34 0 0 0 0 0.26 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='480' height='480' filter='url(%23p)'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: auto, auto, auto, auto, 480px 480px;
 }
 
-body {
-  margin: 0;
-}
+html { scroll-behavior: smooth; }
 
 ::selection {
   background: var(--color-brand);
@@ -50,8 +70,22 @@ body {
   background: linear-gradient(150deg, var(--color-brand) 0%, var(--color-brand-deep) 100%);
 }
 
+/* 다크 톤 — 먹빛 한지(흙벽지) 느낌 */
 .ink-gradient {
-  background: linear-gradient(180deg, #1B1815 0%, #28221E 100%);
+  background-color: #1B1815;
+  background-image:
+    radial-gradient(ellipse 800px 500px at 30% 20%, rgba(139, 42, 36, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 700px 600px at 80% 85%, rgba(107, 127, 92, 0.12) 0%, transparent 55%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 28px,
+      rgba(255, 235, 200, 0.022) 28px,
+      rgba(255, 235, 200, 0.022) 29px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='3' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='480' height='480' filter='url(%23p)'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #1B1815 0%, #28221E 100%);
+  background-size: auto, auto, auto, 480px 480px, auto;
 }
 
 img {
@@ -87,21 +121,29 @@ img {
 .hide-scroll::-webkit-scrollbar { display: none; }
 .hide-scroll { scrollbar-width: none; }
 
-/* ───── 한국 전통 패턴 — 한지 텍스처 ───── */
+/* ───── 섹션 배경 — 한지 결이 비치도록 ───── */
 .bg-hanji {
-  background-color: var(--color-cream);
+  background-color: rgba(244, 236, 219, 0.55);
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(139, 42, 36, 0.025) 0%, transparent 35%),
-    radial-gradient(circle at 80% 70%, rgba(107, 127, 92, 0.03) 0%, transparent 40%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.36 0 0 0 0 0.29 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    radial-gradient(ellipse 900px 600px at 20% 25%, rgba(139, 42, 36, 0.032) 0%, transparent 55%),
+    radial-gradient(ellipse 800px 700px at 80% 70%, rgba(107, 127, 92, 0.040) 0%, transparent 60%),
+    radial-gradient(ellipse 500px 400px at 55% 50%, rgba(180, 130, 75, 0.060) 0%, transparent 60%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 26px,
+      rgba(139, 100, 60, 0.012) 26px,
+      rgba(139, 100, 60, 0.012) 27px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.34 0 0 0 0 0.26 0 0 0 0.075 0'/%3E%3C/filter%3E%3Crect width='480' height='480' filter='url(%23p)'/%3E%3C/svg%3E");
+  background-size: auto, auto, auto, auto, 480px 480px;
 }
 
 .bg-paper {
-  background-color: var(--color-paper);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='1'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.36 0 0 0 0 0.29 0 0 0 0.025 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23p)'/%3E%3C/svg%3E");
+  background-color: rgba(251, 248, 242, 0.55);
 }
 
-/* ───── 인장 스타일 (전통 도장) ───── */
+/* ───── 인장 (傳統 印章) ───── */
 .seal {
   width: 56px;
   height: 56px;
@@ -114,6 +156,7 @@ img {
   justify-content: center;
   border-radius: 6px;
   position: relative;
+  box-shadow: 0 2px 8px rgba(139, 42, 36, 0.25);
 }
 .seal::before {
   content: "";
@@ -139,4 +182,19 @@ img {
 .divider-line.center::after {
   margin-left: auto;
   margin-right: auto;
+}
+
+/* 한지 카드 — 사진 카드 등의 미세한 결 */
+.bg-card-hanji {
+  background-color: var(--color-paper);
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 22px,
+      rgba(139, 100, 60, 0.008) 22px,
+      rgba(139, 100, 60, 0.008) 23px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.34 0 0 0 0 0.26 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23p)'/%3E%3C/svg%3E");
+  background-size: auto, 300px 300px;
 }
